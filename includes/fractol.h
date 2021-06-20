@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 11:45:16 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/20 18:02:44 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/20 18:14:27 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_mlx_img
 }				t_mlx_img;
 
 int	check_args(int argc, char **argv);
+
+void	my_mlx_events(void *mlx, void *win);
 
 int	print_usage(void);
 
