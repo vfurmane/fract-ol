@@ -1,0 +1,5 @@
+*.o
+fractol
+*.out
+*.dSYM/
+.*.swp
