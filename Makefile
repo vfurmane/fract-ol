@@ -6,7 +6,7 @@
 #    By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/20 11:45:55 by vfurmane          #+#    #+#              #
-#    Updated: 2021/06/20 17:06:36 by vfurmane         ###   ########.fr        #
+#    Updated: 2021/06/20 17:39:42 by vfurmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ MLX_DIR			= minilibx-linux
 MLX_FILE		= $(MLX_DIR)/libmlx_Linux.a
 LIBS			= -L minilibx-linux -lmlx_Linux -lXext -lX11 -lm
 CC				= clang
-CFLAGS			= -Wall -Wextra -Werror -ggdb
+CFLAGS			= -Wall -Wextra -Werror -g3
 RM				= rm -f
 
 %.o:			%.c
@@ -34,7 +34,7 @@ $(MLX_FILE):
 				make -C $(MLX_DIR)
 
 $(NAME):		$(OBJS)
-				$(CC) $(CFLAGS) $^ -o $(NAME)
+				$(CC) $(CFLAGS) $^ $(LIBS) -o $(NAME)
 
 bonus:			$(MLX_FILE) all
 
@@ -46,7 +46,6 @@ clean:
 
 fclean:			clean
 				$(RM) $(NAME)
-				make -C $(MLX_DIR) fclean
 
 re:				fclean all
 
