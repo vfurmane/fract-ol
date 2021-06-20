@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 11:45:16 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/20 17:00:49 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/20 17:10:04 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 
 int	check_args(int argc, char **argv);
 
-int print_usage();
+int	print_usage(void);
 
 #endif

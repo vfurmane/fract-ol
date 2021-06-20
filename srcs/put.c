@@ -6,13 +6,13 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 17:00:06 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/20 17:00:14 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/20 17:09:52 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int print_usage()
+int	print_usage(void)
 {
 	printf("Usage: ./fractol julia|mandelbrot\n");
 	return (1);
