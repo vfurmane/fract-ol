@@ -6,45 +6,48 @@
 #    By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/20 11:45:55 by vfurmane          #+#    #+#              #
-#    Updated: 2021/06/20 17:01:01 by vfurmane         ###   ########.fr        #
+#    Updated: 2021/06/20 17:06:36 by vfurmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= fractol
-SRCS		= $(addprefix srcs/, check_args.c main.c put.c \
-			  $(addprefix utils/, ft_strcmp.c))
-OBJS		= $(SRCS:.c=.o)
-INCL		= $(addprefix -I , includes minilibx-linux)
-MLX_DIR		= minilibx-linux
-LIBS		= -L minilibx-linux -lmlx_Linux -lXext -lX11 -lm
-CC			= clang
-CFLAGS		= -Wall -Wextra -Werror -ggdb
-RM			= rm -f
+NAME			= fractol
+SRCS			= $(addprefix srcs/, check_args.c main.c put.c \
+				  $(addprefix utils/, ft_strcmp.c))
+OBJS			= $(SRCS:.c=.o)
+INCL			= $(addprefix -I , includes minilibx-linux)
+MLX_DIR			= minilibx-linux
+MLX_FILE		= $(MLX_DIR)/libmlx_Linux.a
+LIBS			= -L minilibx-linux -lmlx_Linux -lXext -lX11 -lm
+CC				= clang
+CFLAGS			= -Wall -Wextra -Werror -ggdb
+RM				= rm -f
 
-%.o:		%.c
-			$(CC) $(CFLAGS) -c $< $(INCL) -o $@
+%.o:			%.c
+				$(CC) $(CFLAGS) -c $< $(INCL) -o $@
 
-all:		CFLAGS+= -fsanitize=address
-all:		mlx $(NAME)
+all:			CFLAGS+= -fsanitize=address
+all:			$(MLX_FILE) $(NAME)
 
-mlx:
-			git submodule init
-			git submodule update
-			make -C $(MLX_DIR)
+$(MLX_FILE):
+				git submodule init
+				git submodule update
+				make -C $(MLX_DIR)
 
-$(NAME):	$(OBJS)
-			$(CC) $(CFLAGS) $^ -o $(NAME)
+$(NAME):		$(OBJS)
+				$(CC) $(CFLAGS) $^ -o $(NAME)
 
-bonus:		all
+bonus:			$(MLX_FILE) all
 
-nosanitize:	$(NAME)
+nosanitize:		$(MLX_FILE) $(NAME)
 
 clean:
-			$(RM) $(OBJS)
+				$(RM) $(OBJS)
+				make -C $(MLX_DIR) clean
 
-fclean:		clean
-			$(RM) $(NAME)
+fclean:			clean
+				$(RM) $(NAME)
+				make -C $(MLX_DIR) fclean
 
-re:			fclean all
+re:				fclean all
 
-.PHONY:		all mlx bonus nosanitize clean fclean re
+.PHONY:			all mlx bonus nosanitize clean fclean re
