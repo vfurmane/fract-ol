@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/20 16:57:54 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/20 21:14:09 by vfurmane         ###   ########.fr       */
+/*   Created: 2021/06/20 21:13:42 by vfurmane          #+#    #+#             */
+/*   Updated: 2021/06/20 22:39:18 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "utils.h"
 
-# include <stdlib.h>
+void	*ft_bzero(void *str, size_t len)
+{
+	size_t	i;
 
-void	*ft_bzero(void *str, size_t len);
-void	*ft_calloc(size_t len, size_t size);
-int		ft_strcmp(const char *str1, const char *str2);
-
-#endif
+	i = 0;
+	while (i < len)
+	{
+		((char *)str)[i] = 0;
+		i++;
+	}
+	return (str);
+}

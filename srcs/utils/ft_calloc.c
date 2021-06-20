@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/20 16:57:54 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/20 21:14:09 by vfurmane         ###   ########.fr       */
+/*   Created: 2021/06/20 21:12:31 by vfurmane          #+#    #+#             */
+/*   Updated: 2021/06/20 21:12:48 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "utils.h"
 
-# include <stdlib.h>
+void	*ft_calloc(size_t len, size_t size)
+{
+	void	*ptr;
+	size_t	total_size;
 
-void	*ft_bzero(void *str, size_t len);
-void	*ft_calloc(size_t len, size_t size);
-int		ft_strcmp(const char *str1, const char *str2);
-
-#endif
+	total_size = len * size;
+	ptr = malloc(total_size);
+	if (ptr == NULL)
+		return (NULL);
+	ft_bzero(ptr, total_size);
+	return (ptr);
+}

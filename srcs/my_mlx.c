@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   my_mlx.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/20 16:57:54 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/20 21:14:09 by vfurmane         ###   ########.fr       */
+/*   Created: 2021/06/20 21:49:00 by vfurmane          #+#    #+#             */
+/*   Updated: 2021/06/20 22:39:04 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "fractol.h"
 
-# include <stdlib.h>
+void	my_mlx_put_pixel(t_mlx_img *img, int x, int y, int color)
+{
+	char	*dest;
 
-void	*ft_bzero(void *str, size_t len);
-void	*ft_calloc(size_t len, size_t size);
-int		ft_strcmp(const char *str1, const char *str2);
-
-#endif
+	dest = img->addr + ((int)y * img->size_line
+			+ (int)x * (img->bits_per_pixel / 8));
+	*(unsigned int *)dest = color;
+}
