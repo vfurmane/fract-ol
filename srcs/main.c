@@ -6,22 +6,26 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 11:45:35 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/20 22:38:33 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/20 23:11:46 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-const uint16_t			g_width = 400;
-const uint16_t			g_height = 400;
-const uint8_t			g_max_iterations = 100;
-const uint16_t			g_bounded_radius = 25;
-const double			g_scale = 150;
+const uint16_t			g_width = 800;
+const uint16_t			g_height = 800;
+const uint8_t			g_max_iterations = 20;
+const uint32_t			g_bounded_radius = 1000;
+const double			g_scale = 300;
 const complex double	g_c = 0.8 * I;
+const int				g_colors[11] = {0x000000, 0x582f0e, 0x7f4f24, 0x936639,
+										0xa68a64, 0xb6ad90, 0xc2c5aa, 0xa4ac86,
+										0x656d4a, 0x414833, 0x333d29};
 
 uint32_t	get_color_at_coordinates(double x, double y)
 {
 	uint8_t			i;
+	uint32_t		color;
 	double complex	nbr;
 	double complex	conjugate;
 
@@ -32,13 +36,19 @@ uint32_t	get_color_at_coordinates(double x, double y)
 		+ cimagf(conjugate) * cimagf(conjugate)
 		< g_bounded_radius * g_bounded_radius && i < g_max_iterations)
 	{
-		conjugate = conj(nbr);
 		nbr *= nbr;
-		nbr -= g_c;
+		nbr += g_c;
 		conjugate = conj(nbr);
 		i++;
 	}
-	return (0xFFFFFF / g_max_iterations * i);
+	if (i == g_max_iterations)
+		color = 0;
+	else
+		color = 0x582f0e;
+	color = g_colors[(int)((double)(g_max_iterations - i)
+			/ (double)g_max_iterations
+			* (sizeof (g_colors) / sizeof (g_colors[0]) - 1))];
+	return (color);
 }
 
 void	render_julia_set(t_mlx_img *img)
