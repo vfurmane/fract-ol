@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/20 11:45:35 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/20 17:00:29 by vfurmane         ###   ########.fr       */
+/*   Created: 2021/06/20 17:00:34 by vfurmane          #+#    #+#             */
+/*   Updated: 2021/06/20 17:00:43 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	main(int argc, char **argv)
+int	check_args(int argc, char **argv)
 {
-	if (check_args(argc, argv) == 0)
-		return (print_usage());
-	return (0);
+	if (argc != 2)
+		return (0);
+	if (ft_strcmp("julia", argv[1]) != 0
+		&& ft_strcmp("mandelbrot", argv[1]) != 0)
+			return (0);
+	return (1);
 }

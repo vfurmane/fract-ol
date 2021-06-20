@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/20 11:45:35 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/20 17:00:29 by vfurmane         ###   ########.fr       */
+/*   Created: 2021/06/20 16:57:41 by vfurmane          #+#    #+#             */
+/*   Updated: 2021/06/20 16:57:50 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "utils.h"
 
-int	main(int argc, char **argv)
+int	ft_strcmp(const char *str1, const char *str2)
 {
-	if (check_args(argc, argv) == 0)
-		return (print_usage());
+	size_t	i;
+
+	i = 0;
+	while (str1[i] || str2[i])
+	{
+		if (str1[i] != str2[i])
+			return ((unsigned char)str1[i] - (unsigned char)str2[i]);
+		i++;
+	}
 	return (0);
 }

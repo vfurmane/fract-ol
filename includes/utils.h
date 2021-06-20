@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/20 11:45:35 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/20 17:00:29 by vfurmane         ###   ########.fr       */
+/*   Created: 2021/06/20 16:57:54 by vfurmane          #+#    #+#             */
+/*   Updated: 2021/06/20 16:59:30 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-int	main(int argc, char **argv)
-{
-	if (check_args(argc, argv) == 0)
-		return (print_usage());
-	return (0);
-}
+# include <stdlib.h>
+
+int	ft_strcmp(const char *str1, const char *str2);
+
+#endif
