@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 11:45:16 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/20 21:52:20 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/21 14:25:29 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,34 @@ typedef struct s_mlx_img
 	int			endian;
 }				t_mlx_img;
 
+typedef struct s_mlx_key
+{
+	int			Up;
+	int			Down;
+}				t_mlx_key;
+
+typedef struct s_config
+{
+	void		*mlx;
+	void		*win;
+	t_mlx_img	img;
+//	uint16_t	width;
+//	uint16_t	height;
+//	uint8_t		max_iterations;
+//	uint32_t	bounded_radius;
+//	complex double	c;
+	uint32_t	pixel_size;
+	double		scale;
+}				t_config;
+
 int		check_args(int argc, char **argv);
 
-void	my_mlx_events(void *mlx, void *win);
+void	my_mlx_events(t_config *config);
 
-void	my_mlx_put_pixel(t_mlx_img *img, int x, int y, int color);
+void	my_mlx_put_pixel(t_mlx_img *img, int x, int y, int color, uint32_t pixel_size);
 
 int		print_usage(void);
+
+void	render_julia_set(t_config *config);
 
 #endif

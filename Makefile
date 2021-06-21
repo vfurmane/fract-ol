@@ -6,7 +6,7 @@
 #    By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/20 11:45:55 by vfurmane          #+#    #+#              #
-#    Updated: 2021/06/20 21:49:55 by vfurmane         ###   ########.fr        #
+#    Updated: 2021/06/21 14:18:43 by vfurmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,11 +38,11 @@ $(NAME):		$(OBJS)
 
 bonus:			$(MLX_FILE) all
 
+nosanitize:		CFLAGS+= -O3
 nosanitize:		$(MLX_FILE) $(NAME)
 
 clean:
 				$(RM) $(OBJS)
-				make -C $(MLX_DIR) clean
 
 fclean:			clean
 				$(RM) $(NAME)
