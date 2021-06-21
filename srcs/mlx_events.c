@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 18:13:57 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/21 14:23:24 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/21 15:41:34 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ static int	my_mlx_scroll(int code, int	x, int y, t_config *config)
 	(void)y;
 	if (code == Button4)
 	{
-		config->scale += 100;
+		config->scale *= 1.25;
 		render_julia_set(config);
 		mlx_put_image_to_window(config->mlx, config->win, config->img.ptr, 0, 0);
 	}
-	else if (code == Button5 && config->scale > 100)
+	else if (code == Button5 && config->scale >= 1.25)
 	{
-		config->scale -= 100;
+		config->scale /= 1.25;
 		render_julia_set(config);
 		mlx_put_image_to_window(config->mlx, config->win, config->img.ptr, 0, 0);
 	}

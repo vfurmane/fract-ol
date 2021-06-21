@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 11:45:35 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/21 14:23:59 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/21 16:01:07 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 const uint16_t			g_width = 400;
 const uint16_t			g_height = 400;
-const uint8_t			g_max_iterations = 40;
-const uint32_t			g_bounded_radius = 30;
+const uint8_t			g_max_iterations = 200;
+const uint32_t			g_bounded_radius = 300;
+// const complex double	g_c = -0.4 + -0.59 * I;
+// const complex double	g_c = 0.37 + 0.1 * I;
+const complex double	g_c = -0.7269 + 0.1889 * I;
 // const complex double	g_c = -1.417022285618 + 0.0099534 * I;
-const complex double	g_c = 0.285 + 0.01 * I;
+// const complex double	g_c = 0.285 + 0.01 * I;
 const uint32_t			g_setps = 100;
 const int				g_colors[11] = {0x000000, 0x582f0e, 0x7f4f24, 0x936639,
 										0xa68a64, 0xb6ad90, 0xc2c5aa, 0xa4ac86,
@@ -72,7 +75,6 @@ void	render_julia_set(t_config *config)
 int	main(int argc, char **argv)
 {
 	t_config	config;
-
 	if (check_args(argc, argv) == 0)
 		return (print_usage());
 	config.mlx = mlx_init();
