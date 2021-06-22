@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 11:45:16 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/22 12:15:19 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/22 15:10:36 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void	my_mlx_put_pixel(t_mlx_img *img, t_pixel *pixel);
 int		print_usage(void);
 
 void	render_julia_set(t_config *config);
+
+void	render_mandelbrot_set(t_config *config);
 
 void	route_rendering_set(t_config *config);
 
