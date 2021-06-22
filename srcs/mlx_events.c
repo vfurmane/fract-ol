@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 18:13:57 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/22 22:05:29 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/22 22:34:45 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,30 +42,28 @@ static int	my_mlx_handle_key(int code, t_config *config)
 
 static int	my_mlx_mouse(int code, int	x, int y, t_config *config)
 {
-	if (code == Button1)
+	if (code == Button4 || (code == Button5 && config->scale >= 1.25))
 	{
 		config->center.x += (x - config->width / 2) / config->scale;
 		config->center.y += (y - config->height / 2) / config->scale;
-	}
-	else if (code == Button4)
-	{
+		if (code == Button4)
+			config->scale *= 1.25;
+		else
+		{
+			if (config->scale == INFINITY)
+				config->scale = DBL_MAX;
+			else
+				config->scale /= 1.25;
+		}
+		config->center.x -= (x - config->width / 2) / config->scale;
+		config->center.y -= (y - config->height / 2) / config->scale;
 		config->pixel_size = 10;
 		config->no_scroll = 0;
-		config->scale *= 1.25;
-	}
-	else if (code == Button5 && config->scale >= 1.25)
-	{
-		config->pixel_size = 10;
-		config->no_scroll = 0;
-		config->scale /= 1.25;
-		if (config->scale == INFINITY)
-			config->scale = DBL_MAX;
 	}
 	else
 		return (1);
 	route_rendering_set(config);
-	mlx_put_image_to_window(config->mlx, config->win, config->img.ptr,
-		0, 0);
+	mlx_put_image_to_window(config->mlx, config->win, config->img.ptr, 0, 0);
 	return (0);
 }
 
