@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 11:45:35 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/22 09:00:14 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/22 10:50:36 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ const complex double	g_c = -0.7269 + 0.1889 * I;
 // const complex double	g_c = -1.417022285618 + 0.0099534 * I;
 // const complex double	g_c = 0.285 + 0.01 * I;
 const uint32_t			g_setps = 100;
-const int				g_colors[11] = {0x000000, 0x582f0e, 0x7f4f24, 0x936639,
-										0xa68a64, 0xb6ad90, 0xc2c5aa, 0xa4ac86,
-										0x656d4a, 0x414833, 0x333d29};
+// const int				g_colors[11] = {0x000000, 0x582f0e, 0x7f4f24, 0x936639,
+// 										0xa68a64, 0xb6ad90, 0xc2c5aa, 0xa4ac86,
+// 										0x656d4a, 0x414833, 0x333d29};
+const int				g_colors[11] = {0x000000, 0xFFE921, 0xF4FF1F, 0xE9FF1F, 0xDAFF1F, 0xA6FF1F, 0x71FF1F, 0x1FFF5E, 0x1FFFD2, 0x47D4FF, 0x47C5FF};
 
 uint32_t	get_color_at_coordinates(double x, double y)
 {
