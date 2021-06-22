@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 21:34:03 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/22 21:35:16 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/22 22:02:53 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ uint32_t	mandelbrot_algorithm(t_config *config, double x, double y)
 	while (i < config->max_iterations)
 	{
 		if (fabs(squared_modulus(nbr)) > 4)
-			break;
+			break ;
 		nbr *= nbr;
 		nbr += config->c;
 		i++;
