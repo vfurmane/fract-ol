@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 11:45:16 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/21 14:25:29 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/22 08:59:40 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FRACTOL_H
 
 # include <complex.h>
+# include <float.h>
+# include <math.h>
 # include <stdint.h>
 # include <stdio.h>
 # include <X11/X.h>
