@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 11:26:52 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/22 12:26:02 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/22 21:21:07 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	render_julia_set(t_config *config)
 		while (pixel.y < config->height)
 		{
 			pixel.color = get_color_at_coordinates(config,
-					(pixel.x - config->width / 2) / config->scale,
-					(pixel.y - config->height / 2) / config->scale);
+					config->center.x + (pixel.x - config->width / 2) / config->scale,
+					config->center.y + (pixel.y - config->height / 2) / config->scale);
 			my_mlx_put_pixel(&config->img, &pixel);
 			pixel.y += config->pixel_size;
 		}

@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 11:45:16 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/22 15:10:36 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/22 16:59:25 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ typedef struct s_mlx_key
 	int			Down;
 }				t_mlx_key;
 
-//	uint16_t	width;
-//	uint16_t	height;
-//	uint8_t		max_iterations;
-//	uint32_t	bounded_radius;
-//	complex double	c;
+typedef struct s_coord
+{
+	double		x;
+	double		y;
+}				t_coord;
 
 typedef struct s_config
 {
@@ -58,6 +58,7 @@ typedef struct s_config
 	uint32_t		pixel_size;
 	double			scale;
 	uint16_t		no_scroll;
+	t_coord			center;
 }					t_config;
 
 typedef struct s_pixel

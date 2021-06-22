@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 14:58:53 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/22 16:10:13 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/22 17:45:38 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	render_mandelbrot_set(t_config *config)
 {
 	t_pixel	pixel;
 
-	config->max_iterations = 20;
+	config->max_iterations = 25;
 	pixel.size = config->pixel_size;
 	//config->scale = 1;
 	pixel.x = 0;
@@ -65,8 +65,8 @@ void	render_mandelbrot_set(t_config *config)
 		while (pixel.y < config->height)
 		{
 			pixel.color = get_color_at_coordinates(config,
-					(pixel.x - config->width / 2) / config->scale,
-					(pixel.y - config->height / 2) / config->scale);
+					(config->center.x + pixel.x - config->width / 2) / config->scale,
+					(config->center.y + pixel.y - config->height / 2) / config->scale);
 			my_mlx_put_pixel(&config->img, &pixel);
 			pixel.y += config->pixel_size;
 		}

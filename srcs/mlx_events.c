@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 18:13:57 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/22 12:28:52 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/22 21:22:39 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	my_mlx_loop_hook(t_config *config)
 			0, 0);
 		config->no_scroll++;
 	}
-	else
+	else if (config->no_scroll < 100)
 		config->no_scroll++;
 	return (0);
 }
@@ -40,11 +40,17 @@ static int	my_mlx_handle_key(int code, t_config *config)
 	return (0);
 }
 
-static int	my_mlx_scroll(int code, int	x, int y, t_config *config)
+static int	my_mlx_mouse(int code, int	x, int y, t_config *config)
 {
-	(void)x;
-	(void)y;
-	if (code == Button4)
+	if (code == Button1)
+	{
+		config->center.x += (x - config->width / 2) / config->scale;
+		config->center.y += (y - config->height / 2) / config->scale;
+		route_rendering_set(config);
+		mlx_put_image_to_window(config->mlx, config->win, config->img.ptr,
+			0, 0);
+	}
+	else if (code == Button4)
 	{
 		config->pixel_size = 10;
 		config->no_scroll = 0;
@@ -70,10 +76,10 @@ static int	my_mlx_scroll(int code, int	x, int y, t_config *config)
 
 void	my_mlx_events(t_config *config)
 {
-	config->no_scroll = 0;
+	config->no_scroll = 101;
 	mlx_loop_hook(config->mlx, my_mlx_loop_hook, config);
 	mlx_hook(config->win, ClientMessage, StructureNotifyMask,
 		my_mlx_close_window, config->mlx);
 	mlx_hook(config->win, KeyPress, KeyPressMask, my_mlx_handle_key, config);
-	mlx_hook(config->win, ButtonPress, ButtonPressMask, my_mlx_scroll, config);
+	mlx_hook(config->win, ButtonPress, ButtonPressMask, my_mlx_mouse, config);
 }
