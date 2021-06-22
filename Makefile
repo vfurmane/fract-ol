@@ -6,12 +6,12 @@
 #    By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/20 11:45:55 by vfurmane          #+#    #+#              #
-#    Updated: 2021/06/22 11:57:52 by vfurmane         ###   ########.fr        #
+#    Updated: 2021/06/22 12:15:31 by vfurmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= fractol
-SRCS			= $(addprefix srcs/, check_args.c init.c main.c mlx_events.c my_mlx.c put.c render_julia.c \
+SRCS			= $(addprefix srcs/, check_args.c init.c main.c mlx_events.c my_mlx.c put.c render_julia.c route.c \
 				  $(addprefix utils/, ft_strcmp.c))
 OBJS			= $(SRCS:.c=.o)
 INCL			= $(addprefix -I , includes minilibx-linux)

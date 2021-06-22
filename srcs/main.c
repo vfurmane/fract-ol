@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 11:45:35 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/22 12:03:23 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/22 12:09:10 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 
 	if (check_args(argc, argv) == 0)
 		return (print_usage());
-	init_parameters(&config);
+	init_parameters(&config, argv[1]);
 	config.mlx = mlx_init();
 	config.img.ptr = mlx_new_image(config.mlx, config.width, config.height);
 	config.img.addr = mlx_get_data_addr(config.img.ptr,
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	if (config.img.endian == 1)
 		printf("\033[33mWarning: Your system uses big endian, "
 			"the colors may be inaccurate...\n");
-	render_julia_set(&config);
+	route_rendering_set(&config);
 	config.win = mlx_new_window(config.mlx, config.width, config.height,
 			"fract-ol");
 	mlx_put_image_to_window(config.mlx, config.win, config.img.ptr, 0, 0);

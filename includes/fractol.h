@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 11:45:16 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/22 12:04:21 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/22 12:15:19 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_config
 	void			*mlx;
 	void			*win;
 	t_mlx_img		img;
+	char			*set;
 	uint16_t		width;
 	uint16_t		height;
 	uint8_t			max_iterations;
@@ -69,7 +70,7 @@ typedef struct s_pixel
 
 int		check_args(int argc, char **argv);
 
-void	init_parameters(t_config *config);
+void	init_parameters(t_config *config, char *set);
 
 void	my_mlx_events(t_config *config);
 
@@ -78,5 +79,7 @@ void	my_mlx_put_pixel(t_mlx_img *img, t_pixel *pixel);
 int		print_usage(void);
 
 void	render_julia_set(t_config *config);
+
+void	route_rendering_set(t_config *config);
 
 #endif
