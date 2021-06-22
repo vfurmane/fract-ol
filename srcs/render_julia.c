@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 11:26:52 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/21 13:21:05 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/22 11:03:21 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,20 @@ static uint32_t	get_color_at_coordinates(double x, double y)
 
 void	render_julia_set(t_config *config)
 {
-	int16_t		x;
-	int16_t		y;
-	uint32_t	color;
+	t_pixel	pixel;
 
-	x = 0;
-	while (x < g_width)
+	pixel.size = config.pixel_size;
+	pixel.x = 0;
+	while (pixel.x < g_width)
 	{
-		y = 0;
-		while (y < g_height)
+		pixel.y = 0;
+		while (pixel.y < g_height)
 		{
-			color = get_color_at_coordinates((x - g_width / 2) / config->scale,
-					(y - g_height / 2) / config->scale);
-			my_mlx_put_pixel(&config->img, x, y, color);
-			y++;
+			pixel.color = get_color_at_coordinates((pixel.x - g_width / 2)
+					/ config->scale, (pixel.y - g_height / 2) / config->scale);
+			my_mlx_put_pixel(&config->img, &pixel);
+			pixel.y++;
 		}
-		x++;
+		pixel.x++;
 	}
 }

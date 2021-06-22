@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 11:45:35 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/22 10:50:36 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/22 11:11:08 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ const complex double	g_c = -0.7269 + 0.1889 * I;
 // const complex double	g_c = -1.417022285618 + 0.0099534 * I;
 // const complex double	g_c = 0.285 + 0.01 * I;
 const uint32_t			g_setps = 100;
-// const int				g_colors[11] = {0x000000, 0x582f0e, 0x7f4f24, 0x936639,
+// const int			g_colors[11] = {0x000000, 0x582f0e, 0x7f4f24, 0x936639,
 // 										0xa68a64, 0xb6ad90, 0xc2c5aa, 0xa4ac86,
 // 										0x656d4a, 0x414833, 0x333d29};
-const int				g_colors[11] = {0x000000, 0xFFE921, 0xF4FF1F, 0xE9FF1F, 0xDAFF1F, 0xA6FF1F, 0x71FF1F, 0x1FFF5E, 0x1FFFD2, 0x47D4FF, 0x47C5FF};
+const int				g_colors[11] = {0x000000, 0xFFE921, 0xF4FF1F, 0xE9FF1F,
+										0xDAFF1F, 0xA6FF1F, 0x71FF1F, 0x1FFF5E,
+										0x1FFFD2, 0x47D4FF, 0x47C5FF};
 
 uint32_t	get_color_at_coordinates(double x, double y)
 {
@@ -54,28 +56,28 @@ uint32_t	get_color_at_coordinates(double x, double y)
 
 void	render_julia_set(t_config *config)
 {
-	int16_t		x;
-	int16_t		y;
-	uint32_t	color;
+	t_pixel	pixel;
 
-	x = 0;
-	while (x < g_width)
+	pixel.size = config->pixel_size;
+	pixel.x = 0;
+	while (pixel.x < g_width)
 	{
-		y = 0;
-		while (y < g_height)
+		pixel.y = 0;
+		while (pixel.y < g_height)
 		{
-			color = get_color_at_coordinates((x - g_width / 2) / config->scale,
-					(y - g_height / 2) / config->scale);
-			my_mlx_put_pixel(&config->img, x, y, color, config->pixel_size);
-			y += config->pixel_size;
+			pixel.color = get_color_at_coordinates((pixel.x - g_width / 2)
+					/ config->scale, (pixel.y - g_height / 2) / config->scale);
+			my_mlx_put_pixel(&config->img, &pixel);
+			pixel.y += config->pixel_size;
 		}
-		x += config->pixel_size;
+		pixel.x += config->pixel_size;
 	}
 }
 
 int	main(int argc, char **argv)
 {
 	t_config	config;
+
 	if (check_args(argc, argv) == 0)
 		return (print_usage());
 	config.mlx = mlx_init();

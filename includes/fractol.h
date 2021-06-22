@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 11:45:16 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/22 08:59:40 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/22 11:22:58 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,35 @@ typedef struct s_mlx_key
 	int			Down;
 }				t_mlx_key;
 
-typedef struct s_config
-{
-	void		*mlx;
-	void		*win;
-	t_mlx_img	img;
 //	uint16_t	width;
 //	uint16_t	height;
 //	uint8_t		max_iterations;
 //	uint32_t	bounded_radius;
 //	complex double	c;
+
+typedef struct s_config
+{
+	void		*mlx;
+	void		*win;
+	t_mlx_img	img;
 	uint32_t	pixel_size;
 	double		scale;
+	uint16_t	no_scroll;
 }				t_config;
+
+typedef struct s_pixel
+{
+	uint16_t	x;
+	uint16_t	y;
+	uint32_t	color;
+	uint16_t	size;
+}				t_pixel;
 
 int		check_args(int argc, char **argv);
 
 void	my_mlx_events(t_config *config);
 
-void	my_mlx_put_pixel(t_mlx_img *img, int x, int y, int color, uint32_t pixel_size);
+void	my_mlx_put_pixel(t_mlx_img *img, t_pixel *pixel);
 
 int		print_usage(void);
 

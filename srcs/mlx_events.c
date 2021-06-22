@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 18:13:57 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/22 09:00:04 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/22 11:12:42 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,17 @@
 //	render_julia_set(config);
 //	mlx_put_image_to_window(config->mlx, config->win, config->img.ptr, 0, 0);
 
-static int	my_mlx_loop_hook(void *param)
+static int	my_mlx_loop_hook(t_config *config)
 {
-	(void)param;
+	if (config->no_scroll == 100)
+	{
+		config->pixel_size = 1;
+		render_julia_set(config);
+		mlx_put_image_to_window(config->mlx, config->win, config->img.ptr,
+			0, 0);
+	}
+	else
+		config->no_scroll++;
 	return (0);
 }
 
@@ -41,28 +49,34 @@ static int	my_mlx_scroll(int code, int	x, int y, t_config *config)
 	(void)y;
 	if (code == Button4)
 	{
+		config->pixel_size = 10;
+		config->no_scroll = 0;
 		config->scale *= 1.25;
 		render_julia_set(config);
-		mlx_put_image_to_window(config->mlx, config->win, config->img.ptr, 0, 0);
+		mlx_put_image_to_window(config->mlx, config->win, config->img.ptr,
+			0, 0);
 	}
 	else if (code == Button5 && config->scale >= 1.25)
 	{
+		config->pixel_size = 10;
+		config->no_scroll = 0;
 		if (config->scale == INFINITY)
 			config->scale = DBL_MAX;
 		else
 			config->scale /= 1.25;
 		render_julia_set(config);
-		mlx_put_image_to_window(config->mlx, config->win, config->img.ptr, 0, 0);
+		mlx_put_image_to_window(config->mlx, config->win, config->img.ptr,
+			0, 0);
 	}
 	return (0);
 }
 
 void	my_mlx_events(t_config *config)
 {
-	mlx_loop_hook(config->mlx, my_mlx_loop_hook, NULL);
+	config->no_scroll = 0;
+	mlx_loop_hook(config->mlx, my_mlx_loop_hook, config);
 	mlx_hook(config->win, ClientMessage, StructureNotifyMask,
 		my_mlx_close_window, config->mlx);
 	mlx_hook(config->win, KeyPress, KeyPressMask, my_mlx_handle_key, config);
-	mlx_mouse_hook(config->win, my_mlx_scroll, config);
-	//mlx_hook(config->win, ButtonPress, ButtonPressMask, my_mlx_handle_key, config);
+	mlx_hook(config->win, ButtonPress, ButtonPressMask, my_mlx_scroll, config);
 }
