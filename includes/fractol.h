@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 11:45:16 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/22 16:59:25 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/22 21:35:06 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,19 @@ typedef struct s_pixel
 	uint16_t	size;
 }				t_pixel;
 
-int		check_args(int argc, char **argv);
+uint32_t	julia_algorithm(t_config *config, double x, double y);
+uint32_t	mandelbrot_algorithm(t_config *config, double x, double y);
 
-void	init_parameters(t_config *config, char *set);
+int			check_args(int argc, char **argv);
 
-void	my_mlx_events(t_config *config);
+void		init_parameters(t_config *config, char *set);
 
-void	my_mlx_put_pixel(t_mlx_img *img, t_pixel *pixel);
+void		my_mlx_events(t_config *config);
 
-int		print_usage(void);
+void		my_mlx_put_pixel(t_mlx_img *img, t_pixel *pixel);
 
-void	render_julia_set(t_config *config);
+int			print_usage(void);
 
-void	render_mandelbrot_set(t_config *config);
-
-void	route_rendering_set(t_config *config);
+void		route_rendering_set(t_config *config);
 
 #endif
