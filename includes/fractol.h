@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 11:45:16 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/22 21:35:06 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/23 14:28:37 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ uint32_t	mandelbrot_algorithm(t_config *config, double x, double y);
 
 int			check_args(int argc, char **argv);
 
+int			init_mlx(t_config *config);
 void		init_parameters(t_config *config, char *set);
 
 void		my_mlx_events(t_config *config);
