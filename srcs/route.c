@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 12:09:13 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/22 22:03:18 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/23 09:43:48 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	route_rendering_set(t_config *config)
 		render_set(config, julia_algorithm);
 	else if (ft_strcmp(config->set, "mandelbrot") == 0)
 	{
-		config->max_iterations = 25;
+		config->max_iterations = 240;
 		render_set(config, mandelbrot_algorithm);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 21:34:03 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/22 22:02:53 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/06/23 12:24:22 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,34 @@ const uint32_t	g_colors[11] = {0x000000, 0xFFE921, 0xF4FF1F, 0xE9FF1F,
 								0xDAFF1F, 0xA6FF1F, 0x71FF1F, 0x1FFF5E,
 								0x1FFFD2, 0x47D4FF, 0x47C5FF};
 
+static uint8_t	check_julia_radius(double complex nbr,
+	double squared_bounded_radius)
+{
+	double complex	conjugate;
+	double			real;
+	double			imag;
+
+	conjugate = conj(nbr);
+	real = crealf(conjugate);
+	imag = cimagf(conjugate);
+	return (real * real + imag * imag < squared_bounded_radius);
+}
+
 uint32_t	julia_algorithm(t_config *config, double x, double y)
 {
 	uint8_t			i;
 	uint32_t		color;
+	double			squared_bounded_radius;
 	double complex	nbr;
-	double complex	conjugate;
 
 	i = 0;
+	squared_bounded_radius = config->bounded_radius * config->bounded_radius;
 	nbr = x - y * I;
-	conjugate = conj(nbr);
-	while (crealf(conjugate) * crealf(conjugate)
-		+ cimagf(conjugate) * cimagf(conjugate)
-		< config->bounded_radius * config->bounded_radius
+	while (check_julia_radius(nbr, squared_bounded_radius) == 1
 		&& i < config->max_iterations)
 	{
 		nbr *= nbr;
 		nbr += config->c;
-		conjugate = conj(nbr);
 		i++;
 	}
 	color = g_colors[(int)((double)(config->max_iterations - i)
