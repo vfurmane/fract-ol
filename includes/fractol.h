@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 11:45:16 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/23 14:28:37 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/09/15 14:19:54 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_config
 	void			*win;
 	t_mlx_img		img;
 	char			*set;
+	uint32_t		(*algorithm)(struct s_config *, double, double);
 	uint16_t		width;
 	uint16_t		height;
 	uint8_t			max_iterations;
@@ -59,6 +60,8 @@ typedef struct s_config
 	double			scale;
 	uint16_t		no_scroll;
 	t_coord			center;
+	uint16_t		compute_start;
+	uint16_t		compute_number;
 }					t_config;
 
 typedef struct s_pixel

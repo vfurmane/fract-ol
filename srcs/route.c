@@ -6,14 +6,13 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 12:09:13 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/23 09:43:48 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/09/15 14:19:38 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	render_set(t_config *config,
-	uint32_t (*get_color_at_coordinates)(t_config *, double, double))
+static void	render_set(t_config *config)
 {
 	t_pixel	pixel;
 
@@ -24,7 +23,7 @@ static void	render_set(t_config *config,
 		pixel.y = 0;
 		while (pixel.y < config->height)
 		{
-			pixel.color = get_color_at_coordinates(config,
+			pixel.color = config->algorithm(config,
 					config->center.x + (pixel.x - config->width / 2)
 					/ config->scale,
 					config->center.y + (pixel.y - config->height / 2)
@@ -39,10 +38,11 @@ static void	render_set(t_config *config,
 void	route_rendering_set(t_config *config)
 {
 	if (ft_strcmp(config->set, "julia") == 0)
-		render_set(config, julia_algorithm);
+		config->algorithm = julia_algorithm;
 	else if (ft_strcmp(config->set, "mandelbrot") == 0)
 	{
 		config->max_iterations = 240;
-		render_set(config, mandelbrot_algorithm);
+		config->algorithm = mandelbrot_algorithm;
 	}
+	render_set(config);
 }
