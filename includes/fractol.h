@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 11:45:16 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/09/15 14:19:54 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/09/19 12:46:01 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <complex.h>
 # include <float.h>
 # include <math.h>
+# include <pthread.h>
 # include <stdint.h>
 # include <stdio.h>
 # include <X11/X.h>
@@ -60,6 +61,7 @@ typedef struct s_config
 	double			scale;
 	uint16_t		no_scroll;
 	t_coord			center;
+	pthread_mutex_t	lock;
 	uint16_t		compute_start;
 	uint16_t		compute_number;
 }					t_config;

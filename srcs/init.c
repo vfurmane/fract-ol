@@ -6,7 +6,7 @@
 /*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 11:51:40 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/23 17:36:27 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/09/19 14:29:04 by vfurmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	init_mlx(t_config *config)
 void	init_parameters(t_config *config, char *set)
 {
 	config->set = set;
-	config->width = 400;
-	config->height = 400;
+	config->width = 800;
+	config->height = 800;
 	config->max_iterations = 200;
 	config->bounded_radius = 300;
 	config->c = -0.7269 + 0.1889 * I;
