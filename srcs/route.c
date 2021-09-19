@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   route.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hintauh <hintauh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 12:09:13 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/09/19 14:54:10 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/09/19 16:53:27 by hintauh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	*render_set(void *arg)
+void	render_set(void *arg)
 {
 	t_pixel		pixel;
 	t_config	config;
@@ -39,18 +39,38 @@ void	*render_set(void *arg)
 		}
 		pixel.x += config.pixel_size;
 	}
-	return (NULL);
 }
 
 #undef THREADS_NB
 #define THREADS_NB 4
 
-void	route_rendering_set(t_config *config)
+int	multithreaded_rendering(t_config *config)
 {
 	int			i;
 	pthread_t	threads[THREADS_NB];
 	t_config	configs[THREADS_NB];
 
+	if (pthread_mutex_init(&config->lock, NULL) != 0)
+		return (-1);
+	i = 0;
+	while (i < THREADS_NB)
+	{
+		ft_memcpy(&configs[i], config, sizeof (*config));
+		configs[i].compute_start = i * config->compute_number;
+		pthread_create(&threads[i], NULL, (void *(*)(void *))render_set,
+			&configs[i]);
+		i++;
+	}
+	i = 0;
+	while (i < THREADS_NB)
+		pthread_join(threads[i++], NULL);
+	if (pthread_mutex_destroy(&config->lock) != 0)
+		return (-1);
+	return (0);
+}
+
+void	route_rendering_set(t_config *config)
+{
 	if (ft_strcmp(config->set, "julia") == 0)
 		config->algorithm = julia_algorithm;
 	else if (ft_strcmp(config->set, "mandelbrot") == 0)
@@ -59,22 +79,5 @@ void	route_rendering_set(t_config *config)
 		config->algorithm = mandelbrot_algorithm;
 	}
 	config->compute_number = config->width / THREADS_NB;
-	if (pthread_mutex_init(&config->lock, NULL) != 0)
-		return ;
-	i = 0;
-	while (i < THREADS_NB)
-	{
-		ft_memcpy(&configs[i], config, sizeof (*config));
-		configs[i].compute_start = i * config->compute_number;
-		pthread_create(&threads[i], NULL, render_set, &configs[i]);
-		i++;
-	}
-	i = 0;
-	while (i < THREADS_NB)
-	{
-		pthread_join(threads[i], NULL);
-		i++;
-	}
-	if (pthread_mutex_destroy(&config->lock) != 0)
-		return ;
+	multithreaded_rendering(config);
 }

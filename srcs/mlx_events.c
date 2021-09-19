@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hintauh <hintauh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 18:13:57 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/06/22 22:34:45 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/09/19 16:54:26 by hintauh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	my_mlx_handle_key(int code, t_config *config)
 	return (0);
 }
 
-static int	my_mlx_mouse(int code, int	x, int y, t_config *config)
+static int	my_mlx_mouse(int code, int x, int y, t_config *config)
 {
 	if (code == Button4 || (code == Button5 && config->scale >= 1.25))
 	{

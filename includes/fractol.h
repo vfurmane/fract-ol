@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfurmane <vfurmane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hintauh <hintauh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/20 11:45:16 by vfurmane          #+#    #+#             */
-/*   Updated: 2021/09/19 12:46:01 by vfurmane         ###   ########.fr       */
+/*   Updated: 2021/09/19 17:04:37 by hintauh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,6 @@ typedef struct s_mlx_img
 	int			size_line;
 	int			endian;
 }				t_mlx_img;
-
-typedef struct s_mlx_key
-{
-	int			Up;
-	int			Down;
-}				t_mlx_key;
 
 typedef struct s_coord
 {
